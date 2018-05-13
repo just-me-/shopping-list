@@ -15,9 +15,9 @@ Template.item.events({
   },
   'click a.btn-delete': function( e ) {
     e.stopPropagation();
-    if ( confirm( 'Do you want to delete this item?' ) ) {
+    if ( confirm( 'Möchtest Du diesen Artikel löschen?' ) ) {
       Items.remove( { _id: this._id } );
-      showMessage( 'remove', 'Item deleted' );
+      showMessage( 'remove', 'Artikel gelöscht.' );
     }
   },
   'click input': function( e ) { e.stopPropagation(); },
@@ -33,7 +33,7 @@ Template.item.events({
 
     if ( ( value = $( '#item-' + this._id + ' .edit input' ).val() ) && value != this.title ) {
       Items.update( { _id: this._id }, { $set: { title: value } } );
-      showMessage( 'ok', 'Item updated' );
+      showMessage( 'ok', 'Artikel aktualisiert.' );
     }
     editItem( this );
   },
@@ -69,4 +69,3 @@ var assignLongPress = function( el, callback ) {
       clearTimeout( $( this ).data( 'checkdown' ) );
     });
 }
-

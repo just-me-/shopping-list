@@ -4,9 +4,8 @@ Template.user.helpers( {
       return Meteor.user().username;
   },
   user_icon: function() {
-    if ( Meteor.user() && Meteor.user().icon )
-      return Meteor.user().icon;
-      // Meteor.users does not support icon. 2Do: add as option field...
+    if ( Meteor.user() && Meteor.user().profile.icon )
+      return Meteor.user().profile.icon;
       // return JSON.stringify(Meteor.user());
 
     return 'user';

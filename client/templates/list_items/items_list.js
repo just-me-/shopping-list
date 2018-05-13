@@ -48,7 +48,7 @@ Template.itemsList.events({
     }, 400 );
   },
   'click #shopping-done': function() {
-    if ( confirm( 'Do you want to remove all checked items from the list?' ) ) {
+    if ( confirm( 'Möchtest Du wirklich alle als gekauft markierten Artikel von der Liste löschen?' ) ) {
       _.each( Items.find( {checked: true} ).fetch(), function( item ) {
         Items.remove( { _id: item._id } );
       } )
