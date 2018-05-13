@@ -1,13 +1,13 @@
 <template name="login">
   <form class="form-signin" role="form">
-    <h2 class="form-signin-heading">Please sign in</h2>
+    <h2 class="form-signin-heading">Anmeldung</h2>
     {{#if error_message}}
     <div class="alert alert-danger" role="alert">{{error_message}}</div>
     {{/if}}
-    <label for="input-username" class="sr-only">Username</label>
-    <input type="text" id="input-username" class="form-control" placeholder="Username" required autofocus>
-    <label for="input-password" class="sr-only">Password</label>
-    <input type="password" id="input-password" class="form-control" placeholder="Password" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <label for="input-username" class="sr-only">Benutzername</label>
+    <input type="text" id="input-username" class="form-control" placeholder="Dein Name" required autofocus>
+    <label for="input-password" class="sr-only">Passwort</label>
+    <input type="password" id="input-password" class="form-control" placeholder="Dein Passwort" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Anmelden</button>
   </form>
 </template>

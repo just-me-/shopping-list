@@ -1,7 +1,7 @@
 Template.login.helpers( {
   error_message: function() {
     if ( Session.get( 'login-error' ) === true ) {
-      return 'That was incorrect. Please try again!';
+      return 'Ups! Du hast dich vertippt...';
     }
     Session.set( 'login-error', false );
   }
