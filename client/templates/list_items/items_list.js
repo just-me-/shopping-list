@@ -14,6 +14,10 @@ Template.itemsList.events({
       checked: false
     };
 
+    if(item.title.replace(/\s/g, '') === "" || item.title === null) {
+      return alert("Bitte einen Artikel angeben.");
+    }
+
     Meteor.call( 'itemInsert', item, function( error, result ) {
       // display the error to the user and abort
       if (error) {
@@ -28,7 +32,7 @@ Template.itemsList.events({
 
     var _this = $( 'input#new-item' );
     var width = _this.parents( '.form-inline' ).innerWidth();
-    
+
     inputWidth = _this.outerWidth();
 
     _this.animate({
