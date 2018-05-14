@@ -1,0 +1,24 @@
+<template name="dinner">
+  <div id="dinner-{{_id}}" class="dinner card">
+
+    <h3>{{day}} - {{#if cook}}gekocht von {{cook}}{{else}}<span class="text-danger">niemand kocht</span>{{/if}}</h3>
+
+    <div class="desc input-area">
+      <span>{{desc}}</span>
+      <input type="text" value="{{desc}}">
+    </div>
+
+    <div>
+      <p>Es essen mit: {{registeredJoin}}</p>
+    </div>
+
+    {{#if canRegister cook}}
+      <div class="registerForDinner">
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-time"></span></button>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+      </div>
+    {{/if}}
+
+  </div>
+</template>

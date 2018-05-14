@@ -4,12 +4,17 @@ Template.registerHelper('currentRoute', function (route) {
 
 Template.header.events({
   'click ul.navbar-nav li a': function(e) {
-    $(e.target).closest('li').addClass('jello animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-    function(){
-      $(this).removeClass('jello animated');
-    });
+    animateOnce($(e.target).closest('li'), 'jello');
+      animateOnce($('footer'), 'fadeInUpBig');
   },
   'click .logout': function() {
     Meteor.logout();
   }
 })
+
+var animateOnce = function( object, animation ) {
+  object.addClass(animation+' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+  function(){
+    $(this).removeClass(animation+' animated');
+  });
+}
