@@ -12,6 +12,18 @@ body {
 
 .navbar-header {
   float: left;
+  .nav {
+    float: left;
+    li {
+      float: left;
+      @media (max-width: 768px) {
+        margin-left: 2em;
+      }
+      a {
+        float: left;
+      }
+    }
+  }
 }
 .navbar-right {
   float: right !important;

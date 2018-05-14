@@ -27,9 +27,12 @@ Template.item.events({
     return false;
   },
   'blur .edit input': function( e ) {
+    // not only on mobile..
+    /*
     if ( $( window ).width() >= 768 ) {
       return;
     }
+    */
 
     if ( ( value = $( '#item-' + this._id + ' .edit input' ).val() ) && value != this.title ) {
       Items.update( { _id: this._id }, { $set: { title: value } } );

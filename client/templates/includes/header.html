@@ -2,7 +2,15 @@
   <nav class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{{pathFor 'itemsList'}}">Einkaufsliste</a>
+        <a class="navbar-brand" href="{{pathFor 'itemsList'}}">WG 4.04</a>
+        <ul class="nav navbar-nav">
+          <li class="{{#if currentRoute 'itemsList'}}active{{/if}}">
+            <a href="{{pathFor 'itemsList'}}"><span class="glyphicon glyphicon-shopping-cart"></span><span class="hidden-xs"> Einkaufsliste</span></a>
+          </li>
+          <li class="{{#if currentRoute 'dinnerList'}}active{{/if}}">
+            <a href="{{pathFor 'dinnerList'}}"><span class="glyphicon glyphicon-cutlery"></span><span class="hidden-xs"> Kochliste</span></a>
+          </li>
+        </ul>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#" class="logout">{{> user}}</a></li>

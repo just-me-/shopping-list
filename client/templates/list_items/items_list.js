@@ -15,7 +15,8 @@ Template.itemsList.events({
     };
 
     if(item.title.replace(/\s/g, '') === "" || item.title === null) {
-      return alert("Bitte einen Artikel angeben.");
+      showMessage( 'remove', 'Bitte einen Artikel angeben.' );
+      return;
     }
 
     Meteor.call( 'itemInsert', item, function( error, result ) {
