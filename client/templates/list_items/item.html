@@ -1,12 +1,12 @@
 <template name="item">
-  <li class="item{{#if checked}} checked{{/if}}" id="item-{{_id}}">
+  <li class="animated pulse item{{#if checked}} checked{{/if}}" id="item-{{_id}}">
     {{#if checked}}
     <a href="#" class="btn" data-checked="true"><span class="glyphicon glyphicon-check"></span></a>
     {{else}}
     <a href="#" class="btn" data-checked="false"><span class="glyphicon glyphicon-unchecked"></span></a>
     {{/if}}
-    <a href="#" class="btn btn-right btn-edit hidden-xs"><span class="glyphicon glyphicon-pencil"></span></a>
-    <a href="#" class="btn btn-right btn-important"><span class="glyphicon glyphicon-heart-empty text-{{#if important}}danger{{else}}default{{/if}}"></span></a>
+    <a href="#" class="btn btn-right btn-edit hidden-xs hidden"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a href="#" class="btn btn-right btn-important"><span class="glyphicon glyphicon-fire text-{{#if important}}danger{{else}}default{{/if}}"></span></a>
     <div class="title">
       <span>{{title}}</span>
       <input type="text" value="{{title}}">

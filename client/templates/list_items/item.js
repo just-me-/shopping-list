@@ -11,7 +11,7 @@ Template.item.events({
   'click a.btn-important': function( e ) {
     e.stopPropagation();
     Items.update( { _id: this._id }, { $set: { important: !this.important } } );
-    showMessage( 'heart-empty', 'Item ' + (!this.important ? '' : 'not ') + 'important' );
+    showMessage( 'fire', 'Artikel ist ' + (!this.important ? '' : 'nicht ') + 'dringlich' );
   },
   'click a.btn-delete': function( e ) {
     e.stopPropagation();
