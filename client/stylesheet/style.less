@@ -37,18 +37,31 @@ main ul {
   }
 }
 
-#shopping-done {
+#shopping-done, #show-cumulus {
   margin-top: 15px;
 }
 @media (min-width: 768px) {
-  #shopping-done {
+  #shopping-done, #show-cumulus {
     margin-top: 0;
+  }
+}
+
+#cumulus-modal {
+  .modal-body img {
+    display: block;
+    margin: auto;
+    width: 100%;
+    max-width: 250px;
   }
 }
 
 .item {
   position: relative;
   border-bottom: 1px solid @box-shadow-color;
+
+  &.checked {
+    opacity: 0.5;
+  }
 
   .title {
     overflow: hidden;

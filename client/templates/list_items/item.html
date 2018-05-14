@@ -1,5 +1,5 @@
 <template name="item">
-  <li class="item" id="item-{{_id}}">
+  <li class="item{{#if checked}} checked{{/if}}" id="item-{{_id}}">
     {{#if checked}}
     <a href="#" class="btn" data-checked="true"><span class="glyphicon glyphicon-check"></span></a>
     {{else}}

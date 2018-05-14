@@ -36,8 +36,8 @@ Template.itemsList.events({
     inputWidth = _this.outerWidth();
 
     _this.animate({
-        width: width - 95
-    }, 400 );
+        width: width - 83
+    }, 400 ); // hmm... well... 2Do...
   },
   'blur input#new-item': function(e) {
     e.preventDefault();
@@ -53,5 +53,8 @@ Template.itemsList.events({
         Items.remove( { _id: item._id } );
       } )
     }
+  },
+  'click #show-cumulus': function() {
+    $('#cumulus-modal').modal('show');
   }
 });

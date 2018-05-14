@@ -51,7 +51,7 @@ Template.item.rendered = function() {
 
 var editItem = function( _this ) {
   $( '#item-' + _this._id + ' .btn-edit span' )
-    .toggleClass( 'glyphicon-pencil glyphicon-ok text-danger' );
+    .toggleClass( 'glyphicon-pencil glyphicon-floppy-save text-danger' );
   $( '#item-' + _this._id + ' .title' )
     .toggleClass( 'edit' )
     .find( 'input' ).focus();
