@@ -1,16 +1,49 @@
 Template.registerHelper('canRegister', function (cook) {
   return !(cook === Meteor.user().profile.first_name);
 });
-
 Template.dinner.helpers({
-  registeredJoin: function() {
-    console.log(Dinners.findOne({_id: this._id}));
-    // left here 
-    return Dinners.findOne({_id: this._id});
+  registeredJoin : function () {
+    var result = Dinners.findOne({_id: this._id}).sign;
+    var array = _.map(result, function(val,key){return {name: key, status: val}});
+    array.sort(function (a, b) {
+      var prio = {
+        yes : 1,
+        later : 2,
+        no : 3
+      };
+      if (prio[a.status] > prio[b.status])
+        return 1;
+      if (prio[a.status] < prio[b.status])
+        return -1;
+      return 0;
+    });
+    return array;
+  },
+  isStatus: function(status){
+    return this.status === status;
+  },
+  listedAs: function(status){
+    var result = Dinners.findOne({_id: this._id}).sign;
+    return result[Meteor.user().profile.first_name] === status;
   }
 });
 
 Template.dinner.events({
+  'click .dinner .yes': function( e ) {
+    e.stopPropagation();
+    changeStatusForDinner( this, "yes" );
+    showMessage( 'ok', 'Du isst mit.' );
+  },
+  'click .dinner .later': function( e ) {
+    e.stopPropagation();
+    changeStatusForDinner( this, "later" );
+    showMessage( 'ok', 'Du kommst später.' );
+  },
+  'click .dinner .no': function( e ) {
+    e.stopPropagation();
+    changeStatusForDinner( this, "no" );
+    showMessage( 'ok', 'Du bist nicht da.' );
+  },
   'click input': function( e ) { e.stopPropagation(); },
   'areaLongPress .dinner': function( e ) {
     e.stopPropagation();
@@ -19,7 +52,7 @@ Template.dinner.events({
   },
   'blur .edit input': function( e ) {
     if ( ( value = $( '#dinner-' + this._id + ' .edit input' ).val().trim() ) && value != this.desc ) {
-      Dinners.update( { _id: this._id }, { $set: { desc: value, cook: (value != "-") ? Meteor.user().profile.first_name : '' } } );
+      Dinners.update( { _id: this._id }, { $set: { desc: value, cook: (value != "-") ? Meteor.user().profile.first_name : '', sign: null } } );
       showMessage( 'ok', 'Kocheintrag aktualisiert.' );
     }
     editDinner( this );
@@ -36,6 +69,21 @@ Template.dinner.rendered = function() {
   assignAreaLongPress( el, function() { $( el ).trigger( 'areaLongPress' ); } );
 };
 
+var changeStatusForDinner = function( _this, status ) {
+  var user = Meteor.user().profile.first_name;
+  var sign = Dinners.findOne({_id: _this._id}, {sign: 1});
+  if(sign.sign === null){
+    // no entry yet
+    var userObj = {};
+    userObj[user] = status;
+    Dinners.update( { _id: _this._id }, { $set: { sign: userObj } } );
+  } else {
+    // update.. but do not del other users signs
+    var update = { "$set": {} };
+    update["$set"]["sign."+user] = status;
+    Dinners.update( { _id: _this._id }, update );
+  }
+}
 var editDinner = function( _this ) {
   $( '#dinner-' + _this._id + ' .desc' ).toggleClass( 'edit' ).find( 'input' ).focus();
 }

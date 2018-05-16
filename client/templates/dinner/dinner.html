@@ -1,22 +1,36 @@
 <template name="dinner">
-  <div id="dinner-{{_id}}" class="dinner card">
+  <div id="dinner-{{_id}}" class="dinner card noselect">
 
     <h3>{{day}} - {{#if cook}}gekocht von {{cook}}{{else}}<span class="text-danger">niemand kocht</span>{{/if}}</h3>
 
     <div class="desc input-area">
-      <span>{{desc}}</span>
+      <span>{{#if desc}}{{desc}}{{else}}...{{/if}}</span>
       <input type="text" value="{{desc}}">
     </div>
 
-    <div>
-      <p>Es essen mit: {{registeredJoin}}</p>
+    <div class="registered">
+      <div class="listedDesc">
+      {{#if registeredJoin.length}}
+        Es haben sich eingetragen:
+      {{else}}
+        Es hat sich noch keiner eingetragen.
+      {{/if}}
+      </div>
+
+      {{#each registeredJoin}}
+         <div class="listedJoiner {{status}} left"><span class="name">{{name}}</span>
+           {{#if isStatus "yes"}}wird mitessen <span class="glyphicon glyphicon-thumbs-up"></span>{{/if}}
+           {{#if isStatus "later"}}wird später kommen <span class="glyphicon glyphicon-time"></span>{{/if}}
+           {{#if isStatus "no"}}hat sich abgemeldet <span class="glyphicon glyphicon-thumbs-down"></span>{{/if}}
+         </div>
+      {{/each}}
     </div>
 
     {{#if canRegister cook}}
       <div class="registerForDinner">
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-time"></span></button>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+        <button type="submit" class="yes btn {{#if listedAs "yes"}}btn-primary{{else}}btn-default{{/if}}"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+        <button type="submit" class="later btn {{#if listedAs "later"}}btn-primary{{else}}btn-default{{/if}}"><span class="glyphicon glyphicon-time"></span></button>
+        <button type="submit" class="no btn {{#if listedAs "no"}}btn-primary{{else}}btn-default{{/if}}"><span class="glyphicon glyphicon-thumbs-down"></span></button>
       </div>
     {{/if}}
 
