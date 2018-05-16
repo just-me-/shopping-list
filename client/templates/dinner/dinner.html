@@ -18,7 +18,7 @@
       </div>
 
       {{#each registeredJoin}}
-         <div class="listedJoiner {{status}} left"><span class="name">{{name}}</span>
+         <div class="listedJoiner status-{{status}} left"><span class="name">{{name}}</span>
            {{#if isStatus "yes"}}wird mitessen <span class="glyphicon glyphicon-thumbs-up"></span>{{/if}}
            {{#if isStatus "later"}}wird später kommen <span class="glyphicon glyphicon-time"></span>{{/if}}
            {{#if isStatus "no"}}hat sich abgemeldet <span class="glyphicon glyphicon-thumbs-down"></span>{{/if}}

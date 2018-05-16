@@ -4,7 +4,18 @@ Template.registerHelper('canRegister', function (cook) {
 Template.dinner.helpers({
   registeredJoin : function () {
     var result = Dinners.findOne({_id: this._id}).sign;
-    var array = _.map(result, function(val,key){return {name: key, status: val}});
+    if(!result)
+      return null;
+
+    // remove cook from guest list
+    var cook = this.cook;
+    if(cook)
+      delete result[cook];
+
+    var array = _.map(result, function(val,key){
+      return {name: key, status: val}
+    });
+
     array.sort(function (a, b) {
       var prio = {
         yes : 1,
@@ -24,6 +35,8 @@ Template.dinner.helpers({
   },
   listedAs: function(status){
     var result = Dinners.findOne({_id: this._id}).sign;
+    if (result == null)
+      return false;
     return result[Meteor.user().profile.first_name] === status;
   }
 });
@@ -52,7 +65,7 @@ Template.dinner.events({
   },
   'blur .edit input': function( e ) {
     if ( ( value = $( '#dinner-' + this._id + ' .edit input' ).val().trim() ) && value != this.desc ) {
-      Dinners.update( { _id: this._id }, { $set: { desc: value, cook: (value != "-") ? Meteor.user().profile.first_name : '', sign: null } } );
+      Dinners.update( { _id: this._id }, { $set: { desc: value, cook: (value != "-") ? Meteor.user().profile.first_name : '' } } );
       showMessage( 'ok', 'Kocheintrag aktualisiert.' );
     }
     editDinner( this );
@@ -72,7 +85,7 @@ Template.dinner.rendered = function() {
 var changeStatusForDinner = function( _this, status ) {
   var user = Meteor.user().profile.first_name;
   var sign = Dinners.findOne({_id: _this._id}, {sign: 1});
-  if(sign.sign === null){
+  if(sign && sign.sign === null){
     // no entry yet
     var userObj = {};
     userObj[user] = status;
