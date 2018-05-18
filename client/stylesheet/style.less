@@ -3,15 +3,67 @@
 @box-shadow-color: rgba(0, 0, 0, 0.15);
 @font-family: 'Open Sans', 'Sans Serif', Arial;
 
+@bg-color-1: #EE7752;
+@bg-color-2: #E73C7E;
+@bg-color-3: #23A6D5;
+@bg-color-4: #23D5AB;
+@text-beforebg-color: #ffffff;
+@fade: 0.75;
+
 body {
-  background: #eee;
   color: #666666;
   font-family: @font-family;
   font-weight: 300;
-  // background-repeat: no-repeat;
-  // background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 58));
+  background: #eee;
+  background: linear-gradient(-45deg, @bg-color-1, @bg-color-2, @bg-color-3, @bg-color-4);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
+@-moz-keyframes Gradient {
+	0% { background-position: 0% 50% }
+	50% {	background-position: 100% 50%	}
+	100% { background-position: 0% 50% }
+}
+@keyframes Gradient {
+	0% { background-position: 0% 50% }
+	50% { background-position: 100% 50%	}
+	100% { background-position: 0% 50% }
 }
 
+h2 {
+  color: @text-beforebg-color
+}
+
+footer {
+  color: fade(@text-beforebg-color, 80%);
+}
+
+.btn-primary {
+  background: linear-gradient(-45deg, @bg-color-4, @bg-color-3, @bg-color-2, @bg-color-1);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+  opacity: 0.95;
+  border-color: #ffffff;
+  &:hover, &:focus, &:active,
+  &.focus, &.active {
+    opacity: 1;
+    border-color: #ffffff;
+  }
+}
+.fade {
+  opacity: @fade;
+}
+
+.navbar-default {
+  background-color: rgba(255, 255, 255, @fade+0.15);
+  .navbar-nav > .active > a {
+    background-color: rgba(231, 231, 231, @fade+0.15);
+  }
+}
 .navbar-header {
   float: left;
   .nav {
@@ -33,7 +85,7 @@ body {
 }
 
 main ul {
-  background: #fff;
+  background: rgba(255, 255, 255, @fade);
   padding: 0;
   list-style: none;
   .border-radius(3px);
@@ -89,6 +141,7 @@ main ul {
         display: none;
       }
       input {
+        background-color: inherit;
         display: inherit;
       }
     }
@@ -123,6 +176,7 @@ main ul {
     }
     input {
       display: inherit;
+      background-color: inherit;
     }
   }
   .registered {
@@ -137,7 +191,7 @@ main ul {
       &.status-no {
         text-decoration: line-through;
       }
-      .status-name {
+      .name {
         font-weight: normal;
       }
     }
@@ -188,7 +242,7 @@ main ul {
 }
 
 .card {
-  background: #ffffff;
+  background: rgba(255, 255, 255, @fade);
   border: 1px solid #ccc;
   border-radius: 20px;
   padding: 15px 10px;
