@@ -1,7 +1,7 @@
 <template name="dinner">
   <div id="dinner-{{_id}}" class="dinner card noselect">
 
-    <h3>{{day}} - {{#if cook}}gekocht von {{cook}}{{else}}<span class="text-danger">niemand kocht</span>{{/if}}</h3>
+    <h3>{{day}} - {{#if cook}}{{cook}} kocht{{else}}<span class="text-danger">niemand kocht</span>{{/if}}</h3>
 
     <div class="desc input-area">
       <span>{{#if desc}}{{desc}}{{else}}...{{/if}}</span>

@@ -7,3 +7,6 @@ Meteor.publish( 'dinners', function() {
 Meteor.publish( 'version', function () {
   return Version.find();
 });
+Meteor.publish("allUsers", function () {
+  return Meteor.users.find({});
+});
