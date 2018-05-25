@@ -1,8 +1,9 @@
 Template.item.helpers({
   short : function () {
     // 2do add icons
-    let user =  Meteor.users.findOne(this.userId);
-    return user.profile.first_name.charAt(0) + user.profile.last_name.charAt(0);
+    //let user =  Meteor.users.findOne(this.userId);
+    //return user.profile.first_name.charAt(0) + user.profile.last_name.charAt(0);
+    return this.creator.substring(0,2);
   }
 });
 
