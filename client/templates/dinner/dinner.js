@@ -65,7 +65,7 @@ Template.dinner.events({
   },
   'blur .edit input': function( e ) {
     if ( ( value = $( '#dinner-' + this._id + ' .edit input' ).val().trim() ) && value != this.desc ) {
-      Dinners.update( { _id: this._id }, { $set: { desc: value, cook: (value != "-") ? Meteor.user().profile.first_name : '' } } );
+      Dinners.update( { _id: this._id }, { $set: { desc: value, cook: (! /-|\.\.\./.test(value)) ? Meteor.user().profile.first_name : '' } } );
       showMessage( 'ok', 'Kocheintrag aktualisiert.' );
     }
     editDinner( this );
