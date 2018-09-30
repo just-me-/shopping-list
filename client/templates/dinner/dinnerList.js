@@ -6,6 +6,11 @@ Template.dinnerList.helpers({
 
 Template.dinnerList.events({
   'click #clear-week': function( e ) {
+    // not a safe way but good enough for our wg use
+    if (Meteor.users.findOne(Meteor.userId()).profile.isModerator !== true) {
+      showMessage( 'thumbs-down', 'Fehlende Berechtigung.' );
+      return;
+    }
     if ( confirm( 'Möchtest Du wirklich alle Einträge dieser Woche löschen?' ) ) {
       // Dinners.update( { }, { $set: { desc: '', cook: '', sign: null } } );
       Meteor.call( 'clearWeek', function( error, result ) {

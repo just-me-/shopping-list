@@ -8,13 +8,13 @@ Template.item.helpers({
 });
 
 Template.item.events({
-  'click li': function( e ) {
+  'click li .tick': function( e ) { // only click on tick; not whole entry
     e.stopPropagation();
     Items.update( { _id: this._id }, { $set: { checked: !this.checked } } );
     if ( this.checked ) {
-      showMessage( 'unchecked', 'Item unchecked' );
+      showMessage( 'unchecked', 'Artikel nicht gekauft' );
     } else {
-      showMessage( 'check', 'Item checked' );
+      showMessage( 'check', 'Artikel gekauft' );
     }
   },
   'click a.btn-important': function( e ) {
@@ -57,7 +57,8 @@ Template.item.events({
 });
 
 Template.item.rendered = function() {
-  var el = this.firstNode;
+  // trigger only by pressing title
+  var el = this.firstNode.getElementsByClassName('title')[0];
   assignLongPress( el, function() { $( el ).trigger( 'longPress' ); } );
 };
 

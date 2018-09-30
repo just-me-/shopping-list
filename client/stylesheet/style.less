@@ -14,7 +14,7 @@ body {
   color: #666666;
   font-family: @font-family;
   font-weight: 300;
-  min-height: 100vh; 
+  min-height: 100vh;
   background: #eee;
   background: linear-gradient(-45deg, @bg-color-1, @bg-color-2, @bg-color-3, @bg-color-4);
 	background-size: 400% 400%;
@@ -39,6 +39,10 @@ h2 {
 
 footer {
   color: fade(@text-beforebg-color, 80%);
+}
+
+p.light {
+  color: #ffffff;
 }
 
 .btn-primary {
@@ -72,7 +76,7 @@ footer {
     li {
       float: left;
       @media (max-width: 768px) {
-        margin-left: 2em;
+        margin-left: 1em;
       }
       a {
         float: left;
@@ -170,6 +174,12 @@ main ul {
 
 }
 
+#historyList {
+  .card .space {
+    margin-bottom: 1em;
+  }
+}
+
 .dinner {
   .edit {
     span {
@@ -216,7 +226,7 @@ main ul {
 }
 
 .message {
-  position: absolute;
+  position: fixed;
   z-index: 9000;
   width: 240px;
   left: 50%;
@@ -253,7 +263,8 @@ main ul {
     margin-top: 0px;
     font-size: 1.5em;
   }
-  .input-area {
+  .input-area,
+  .bigger {
     font-size: 1.2em;
   }
 }
