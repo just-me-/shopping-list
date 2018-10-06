@@ -3,12 +3,23 @@
     <h2>Verlauf</h2>
 
     <div id="userCounter" class="card noselect">
-      <h3>User Counter <span class="text-danger">(development mode)</span></h3>
+      <h3>Zählstatistik <span class="text-danger">(dev. mode)</span></h3>
       {{#each users}}
       <div id="user_{{username}}" class="userEntry space">
          <div class="bigger">{{profile.first_name}} {{profile.last_name}}</div>
-         <div>Anz. gekocht: {{profile.dinnerCounter}}</div>
-         <div>Anz. eingekauft: {{profile.shoppingCounter}}mal am {{formatDate profile.shoppingLastDate}}</div>
+
+         {{#if profile.dinnerCounter}}
+           <div><strong>{{profile.dinnerCounter}}</strong>mal gekocht</div>
+         {{else}}
+           <div>Noch nie gekocht.</div>
+         {{/if}}
+
+         {{#if profile.shoppingCounter}}
+           <div><strong>{{profile.shoppingCounter}}</strong>mal eingekauft  ({{formatDate profile.shoppingLastDate}})</div>
+         {{else}}
+           <div>Noch nie eingekauft.</div>
+         {{/if}}
+
       </div>
       {{/each}}
     </div>

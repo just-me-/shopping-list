@@ -65,7 +65,7 @@ Template.itemsList.events({
     _.each( Items.find( {checked: true} ).fetch(), function( item ) {
       Items.remove( { _id: item._id } );
     } )
-    if(countShopped >= 0) {
+    if(countShopped >= 3) {
       // log shoppers
       $("input.shopping-member:checked").each(function(){
         Meteor.call( 'hasShopped', $(this).val(), function( error ) {
