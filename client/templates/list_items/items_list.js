@@ -3,6 +3,14 @@ Template.itemsList.helpers({
     return Items.find({}, {sort: {checked: 1, important: -1, title_index: 1}});
   }
 });
+Template.modal_shoppingDone.helpers({
+  users: function() {
+    return Meteor.users.find({}, {sort: {'profile.first_name': 1}});
+  }
+});
+Template.registerHelper('isMe', function (id) {
+  return (id === Meteor.user()._id);
+});
 
 var inputWidth;
 Template.itemsList.events({
@@ -49,11 +57,25 @@ Template.itemsList.events({
     }, 400 );
   },
   'click #shopping-done': function() {
-    if ( confirm( 'Möchtest Du wirklich alle als gekauft markierten Artikel von der Liste löschen?' ) ) {
-      _.each( Items.find( {checked: true} ).fetch(), function( item ) {
-        Items.remove( { _id: item._id } );
-      } )
+    $('#shopping-modal').modal('show');
+  },
+  'click #shopping-modal .btn-primary': function() {
+    $('#shopping-modal').modal('hide');
+    var countShopped = Items.find( {checked: true} ).count();
+    _.each( Items.find( {checked: true} ).fetch(), function( item ) {
+      Items.remove( { _id: item._id } );
+    } )
+    if(countShopped >= 0) {
+      // log shoppers
+      $("input.shopping-member:checked").each(function(){
+        Meteor.call( 'hasShopped', $(this).val(), function( error ) {
+          if (error) {
+            return alert(error.reason);
+          }
+        });
+      });
     }
+    showMessage( 'trash', 'Einkauf abgeschlossen!<br/>'+countShopped+' Artikel gelöscht.' );
   },
   'click #show-cumulus': function() {
     $('#cumulus-modal').modal('show');

@@ -278,6 +278,35 @@ main ul {
   user-select: none;
 }
 
+.form-check {
+  position: relative;
+  display: block;
+  padding-left: 1.25rem;
+}
+.form-check-input {
+  position: absolute;
+  margin-top: 0;
+  margin-left: 0;
+}
+.form-check-label {
+  margin-bottom: 0;
+}
+.form-check-inline {
+  min-width: 160px;
+  display: inline-block;
+  align-items: center;
+  padding-left: 0; // Override base .form-check
+  margin-right: 1.5rem;
+  margin-bottom: 0.3rem;
+  // Undo .form-check-input defaults and add some `margin-right`.
+  .form-check-input {
+    position: static;
+    margin-top: 0;
+    margin-right: 0.5rem;
+    margin-left: 0;
+  }
+}
+
 .form-signin {
   max-width: 330px;
   padding: 15px;

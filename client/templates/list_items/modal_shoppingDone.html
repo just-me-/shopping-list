@@ -1,0 +1,35 @@
+<template name="modal_shoppingDone">
+
+  <div id="shopping-modal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title">Einkauf abschliessen</h4>
+      </div>
+      <div class="modal-body">
+        <p>Wer hat alles heute eingekauft?</p>
+        {{#each users}}
+           <div class="form-check form-check-inline">
+             {{#if isMe _id}}
+               <input class="form-check-input shopping-member" type="checkbox" id="user_{{username}}" value="{{_id}}" checked>
+             {{else}}
+               <input class="form-check-input shopping-member" type="checkbox" id="user_{{username}}" value="{{_id}}">
+             {{/if}}
+             <label class="form-check-label" for="user_{{username}}">{{profile.first_name}} {{profile.last_name}}</label>
+           </div>
+        {{/each}}
+        <p>Möchtest Du wirklich alle als gekauft markierten Artikel von der Liste löschen?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+        <button type="button" class="btn btn-primary">Ja, löschen und abschliessen!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</template>
