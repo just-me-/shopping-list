@@ -28,5 +28,6 @@ Template.historyList.events({
         return alert(error.reason);
       }
     });
+    showMessage( 'trash', 'Statistik zurückgesetzt.' );
   }
 });
