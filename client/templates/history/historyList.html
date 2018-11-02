@@ -20,6 +20,12 @@
            <div>Noch nie eingekauft.</div>
          {{/if}}
 
+         {{#if status.online}}
+           <div>Ist gerade <strong>online</strong></div>
+         {{else}}
+           <div>Letztes Login: {{formatDate status.lastLogin.date}}</div>
+         {{/if}}
+
       </div>
       {{/each}}
     </div>
