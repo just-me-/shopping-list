@@ -1,0 +1,49 @@
+<template name="eventList">
+  <div id="eventList" class="animated slideInUp">
+    <h2>Gewünschte Events <span class="text-danger">(dev. mode)</span></h2>
+
+    <ul class="events noselect">
+      {{#each events}}
+        {{> event}}
+      {{/each}}
+    </ul>
+
+    <div id="eventCreate" class="card noselect">
+      <h3>Neues Event erstellen</h3>
+      <div class="row">
+          <form class="col-xs-12" role="form">
+            <div class="form-group col-sm-11 ol-xs-12">
+              <div class="col-sm-7 col-xs-12">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <span>Titel</span>
+                  </div>
+                  <input type="text" class="form-control" id="new-event" placeholder="Neues Event...">
+                </div>
+              </div>
+              <div class="radio-toolbar col-sm-5 col-xs-12">
+                <input type="radio" id="movie" name="typ" value="movie" checked>
+                <label for="movie" class="btn btn-default">Film</label>
+
+                <input type="radio" id="switch" name="typ" value="switch">
+                <label for="switch" class="btn btn-default">Switch</label>
+
+                <input type="radio" id="other" name="typ" value="other">
+                <label for="other" class="btn btn-default">Sonstig</label>
+              </div>
+            </div>
+
+            <div class="col-sm-1 col-xs-12">
+              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-open"></span></button>
+            </div>
+          </form>
+      </div>
+    </div>
+
+    <div id="eventRegistration" class="card noselect">
+      <h3>Wochenplanung - Anmeldung</h3>
+      <p>Comming soon...</p>
+    </div>
+
+  </div>
+</template>

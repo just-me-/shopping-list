@@ -1,0 +1,16 @@
+<template name="event">
+
+  <li class="animated pulse event" id="event-{{_id}}">
+    <a href="#" class="btn tick" data-checked="true"><span class="glyphicon glyphicon-{{typicon}}"></span></a>
+    <a href="#" class="btn btn-right btn-important"><span class="glyphicon glyphicon-trash"></span></a>
+    <div class="title">
+      <span>{{title}} \{{short}}</span>
+      {{#if hasTrailer}}
+        <a href="{{trailer}}" target=_blank>(Click me 4 trailer)</a>
+      {{/if}}
+      <!--<span>2Do: like area</span>-->
+    </div>
+
+  </li>
+
+</template>

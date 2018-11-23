@@ -107,6 +107,19 @@ main ul {
     margin-bottom: 0;
   }
 }
+.radio-toolbar {
+  input[type="radio"] {
+    display: none;
+  }
+  label {
+    display: inline-flex;
+    width: auto;
+    cursor: pointer;
+  }
+  input[type="radio"]:checked+label {
+    background-color: #e6e6e6;
+  }
+}
 
 /* toasts */
 #toast-container {
@@ -138,7 +151,7 @@ main ul {
   }
 }
 
-.item {
+.item, .event {
   position: relative;
   border-bottom: 1px solid @box-shadow-color;
 
@@ -184,6 +197,13 @@ main ul {
     }
   }
 
+}
+
+.event {
+  .btn-right {
+    font-size: 0.5em;
+    margin: 1em 0;
+  }
 }
 
 #historyList {
