@@ -8,6 +8,9 @@
 
     <div class="fade">
       <p class="text-right">
+        {{#if isModerator}}
+        <a href="#" id="block-today" class="btn btn-default" title="Heute blockieren">Heute blockieren</a>
+        {{/if}}
         <a href="#" id="clear-week" class="btn btn-primary" title="Woche abschliessen">Woche abschliessen</a>
       </p>
     </div>

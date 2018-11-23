@@ -1,3 +1,7 @@
+Template.registerHelper('isModerator', function () {
+  return (Meteor.users.findOne(Meteor.userId()).profile.isModerator === true);
+});
+
 Template.dinnerList.helpers({
   dinners: function() {
     return Dinners.find({}, {sort: {order_prio: 1}});
@@ -21,5 +25,8 @@ Template.dinnerList.events({
         showMessage( 'ok', 'Die Woche wurde zurückgesetzt.' );
       });
     }
+  },
+  'click #block-today': function( e ) {
+    showMessage( 'ok', 'Noch ned implementiert...' );
   }
 });
