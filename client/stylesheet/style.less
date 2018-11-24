@@ -151,13 +151,16 @@ main ul {
   }
 }
 
-#positio-icons {
-  //position: absolute;
-  //left: 15px;
-  display: none; 
+#position-icons {
   label{
     padding: 2px 8px;
     margin: 0.2em 0.8em 0 0;
+  }
+  input[type="radio"]+label {
+    filter: grayscale(1);
+  }
+  input[type="radio"]:checked+label {
+    filter: grayscale(0);
   }
   img {
     height: 24px;

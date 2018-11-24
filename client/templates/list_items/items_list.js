@@ -1,6 +1,6 @@
 Template.itemsList.helpers({
   items: function() {
-    return Items.find({}, {sort: {checked: 1, important: -1, title_index: 1}});
+    return Items.find({}, {sort: {checked: 1, important: -1, position: -1, title_index: 1}});
   }
 });
 Template.modal_shoppingDone.helpers({
@@ -19,6 +19,7 @@ Template.itemsList.events({
 
     var item = {
       title: $( 'input#new-item' ).val(),
+      position: parseInt($( 'input[name=position]:checked' ).val()),
       checked: false
     };
 
@@ -34,7 +35,13 @@ Template.itemsList.events({
       }
 
       $( 'input#new-item' ).val( '' );
+      $( "#position-icons #default" ).prop( "checked", true );
+      $( "#position-icons" ).hide( 500 );
+
     });
+  },
+  'keypress input#new-item': function(e) {
+    $( "#position-icons" ).show( 500 );
   },
   'focus input#new-item': function(e) {
     e.preventDefault();
