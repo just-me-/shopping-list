@@ -14,7 +14,7 @@ Template.event.helpers({
     }
   },
   hasTrailer: function () {
-    console.log(this.typ);
+    //console.log(this.typ);
     return this.typ == "movie";
   },
   trailer : function () {

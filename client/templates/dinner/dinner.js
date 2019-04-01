@@ -38,6 +38,13 @@ Template.dinner.helpers({
     if (result == null)
       return false;
     return result[Meteor.user().profile.first_name] === status;
+  },
+  isBlocked: function(){
+    // dirty one for "only today gets blocked"
+    var thisDinner = Dinners.findOne({_id: this._id, order_prio: new Date().getDay()});
+    var firstName = Meteor.user().profile.first_name;
+    // user alrdy registered == can change status
+    return (thisDinner && thisDinner.sign && thisDinner.sign[firstName] == null);
   }
 });
 

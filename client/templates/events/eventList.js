@@ -13,7 +13,7 @@ Template.eventList.events({
       typ: $( 'input[name=typ]:checked' ).val()
     };
 
-    console.log(event);
+    // console.log(event);
 
     if(event.title.replace(/\s/g, '') === "" || event.title === null) {
       showMessage( 'remove', 'Bitte ein Event angeben.' );
