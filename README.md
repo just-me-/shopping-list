@@ -118,7 +118,7 @@ Dieses erstellte ZIP lädst Du nun auf Deinen Uberspace hoch. Und zwar unter ~/V
 ### Auf dem Server
 Paket entpacken: 
 ```
-tar -xzf app.tar.gz
+tar -xzf wg-planner.tar.gz 
 cd ~/VAR_SERVER_DIR/build/bundle/programs/server/
 npm install
 svc -du ~/service/VAR_SERVICENAME
